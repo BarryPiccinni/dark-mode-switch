@@ -1,0 +1,16 @@
+# Dependencies
+/node_modules
+
+# Testing
+/coverage
+
+# Next.js
+/.next/
+
+next-env.d.ts
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
