@@ -48,7 +48,7 @@ export default function ThemeDemo() {
               </div>
               <div className="p-4 rounded-lg bg-muted/50 border border-border">
                 <p className="text-sm font-mono">
-                  <span className="text-primary">Current theme:</span> <span className="font-semibold">"{theme}"</span>
+                  <span className="text-primary">Current theme:</span> <span className="font-semibold">&quot;{theme}&quot;</span>
                 </p>
               </div>
             </CardContent>

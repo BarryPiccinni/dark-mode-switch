@@ -43,8 +43,6 @@ describe("ThemeProvider", () => {
     it('should provide default theme as "dark" when no defaultTheme is specified', () => {
       renderWithProvider()
 
-      console.log(screen.getByTestId("current-theme"));
-
       expect(screen.getByTestId("current-theme")).toHaveTextContent("dark")
     })
 
@@ -69,7 +67,9 @@ describe("ThemeProvider", () => {
 
       expect(screen.getByTestId("current-theme")).toHaveTextContent("dark")
 
-      await user.click(screen.getByTestId("set-light"))
+      await act(async() => {
+        await user.click(screen.getByTestId("set-light"))
+      })
 
       expect(screen.getByTestId("current-theme")).toHaveTextContent("light")
     })
@@ -80,7 +80,9 @@ describe("ThemeProvider", () => {
 
       expect(document.documentElement).toHaveClass("dark")
 
-      await user.click(screen.getByTestId("set-light"))
+      await act(async() => {
+        await user.click(screen.getByTestId("set-light"))
+      });
 
       expect(document.documentElement).toHaveClass("light")
       expect(document.documentElement).not.toHaveClass("dark")
@@ -92,7 +94,10 @@ describe("ThemeProvider", () => {
 
       expect(document.documentElement).toHaveClass("light")
 
-      await user.click(screen.getByTestId("set-dark"))
+      await act(async() => {
+        await user.click(screen.getByTestId("set-dark"))
+      });
+      
 
       expect(document.documentElement).toHaveClass("dark")
       expect(document.documentElement).not.toHaveClass("light")
@@ -106,7 +111,9 @@ describe("ThemeProvider", () => {
 
       expect(screen.getByTestId("current-theme")).toHaveTextContent("light")
 
-      await user.click(screen.getByTestId("toggle-theme"))
+      await act(async() => {
+        await user.click(screen.getByTestId("toggle-theme"))
+      });
 
       expect(screen.getByTestId("current-theme")).toHaveTextContent("dark")
     })
@@ -117,7 +124,9 @@ describe("ThemeProvider", () => {
 
       expect(screen.getByTestId("current-theme")).toHaveTextContent("dark")
 
-      await user.click(screen.getByTestId("toggle-theme"))
+      await act(async() => {
+        await user.click(screen.getByTestId("toggle-theme"))
+      });
 
       expect(screen.getByTestId("current-theme")).toHaveTextContent("light")
     })
@@ -130,15 +139,22 @@ describe("ThemeProvider", () => {
       expect(screen.getByTestId("current-theme")).toHaveTextContent("light")
 
       // Toggle to dark
-      await user.click(screen.getByTestId("toggle-theme"))
+      await act(async() => {
+        await user.click(screen.getByTestId("toggle-theme"))
+      });
       expect(screen.getByTestId("current-theme")).toHaveTextContent("dark")
 
       // Toggle back to light
-      await user.click(screen.getByTestId("toggle-theme"))
+      await act(async() => {
+        await user.click(screen.getByTestId("toggle-theme"))
+      })
       expect(screen.getByTestId("current-theme")).toHaveTextContent("light")
 
       // Toggle to dark again
-      await user.click(screen.getByTestId("toggle-theme"))
+      await act(async() => {
+        await user.click(screen.getByTestId("toggle-theme"))
+      });
+
       expect(screen.getByTestId("current-theme")).toHaveTextContent("dark")
     })
 
@@ -148,7 +164,9 @@ describe("ThemeProvider", () => {
 
       expect(document.documentElement).toHaveClass("light")
 
-      await user.click(screen.getByTestId("toggle-theme"))
+      await act(async() => {
+        await user.click(screen.getByTestId("toggle-theme"))
+      })
 
       expect(document.documentElement).toHaveClass("dark")
       expect(document.documentElement).not.toHaveClass("light")
@@ -175,9 +193,12 @@ describe("ThemeProvider", () => {
       renderWithProvider("light")
 
       // Rapidly toggle themes
-      await user.click(screen.getByTestId("toggle-theme"))
-      await user.click(screen.getByTestId("toggle-theme"))
-      await user.click(screen.getByTestId("toggle-theme"))
+      await act(async() => {
+        await user.click(screen.getByTestId("toggle-theme"))
+        await user.click(screen.getByTestId("toggle-theme"))
+        await user.click(screen.getByTestId("toggle-theme"))
+      })
+      
 
       expect(screen.getByTestId("current-theme")).toHaveTextContent("dark")
       expect(document.documentElement).toHaveClass("dark")
